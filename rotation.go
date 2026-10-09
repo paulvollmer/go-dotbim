@@ -15,6 +15,8 @@ type Rotation struct {
 	W float64 `json:"qw"`
 }
 
+// NewRotation returns a quaternion rotation with components x, y, z, and w.
+// The identity rotation, which applies no turn, is (0, 0, 0, 1).
 func NewRotation(x, y, z, w float64) *Rotation {
 	return &Rotation{
 		X: x,

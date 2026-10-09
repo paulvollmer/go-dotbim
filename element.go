@@ -5,6 +5,8 @@ import (
 )
 
 // Represents an element in a BIM file.
+//
+//go:generate go tool github.com/paulvollmer/go-genbuilder
 type Element struct {
 	// The identifier of the mesh associated with the element.
 	MeshID int `json:"mesh_id"`
@@ -29,6 +31,11 @@ type Element struct {
 	Info map[string]string `json:"info"`
 }
 
+// NewElement returns an element that places a mesh in the model.
+// meshID selects the mesh. vector and rotation set its position and
+// orientation. guid is the element's globally unique identifier. typ is the
+// element type, such as "Wall". color is its display color, and info holds
+// additional key-value metadata.
 func NewElement(meshID int, vector Vector, rotation Rotation, guid uuid.UUID, typ string, color Color, info map[string]string) *Element {
 	return &Element{
 		MeshID:   meshID,

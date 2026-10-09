@@ -19,6 +19,9 @@ type Color struct {
 	A uint8 `json:"a"`
 }
 
+// NewColor returns a color with the given red, green, blue, and alpha
+// components. Each component is in the range 0 to 255. An alpha of 255 is
+// fully opaque and an alpha of 0 is fully transparent.
 func NewColor(r, g, b, a uint8) *Color {
 	return &Color{
 		R: r,

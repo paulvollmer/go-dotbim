@@ -12,6 +12,7 @@ type Vector struct {
 	Z float64 `json:"z"`
 }
 
+// NewVector returns a three-dimensional vector with the given coordinates.
 func NewVector(x, y, z float64) *Vector {
 	return &Vector{
 		X: x,
