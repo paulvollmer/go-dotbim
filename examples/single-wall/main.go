@@ -7,6 +7,7 @@ import (
 	"uuid"
 
 	"github.com/paulvollmer/go-dotbim"
+	"github.com/paulvollmer/go-dotbim/units"
 )
 
 func main() {
@@ -15,9 +16,9 @@ func main() {
 	})
 
 	// Define a wall geometry
-	wallWidth := 0.2
-	wallLength := 4.0
-	wallHeight := 2.0
+	wallWidth := units.Centimeter(20)
+	wallLength := units.Meter(4.0)
+	wallHeight := units.Meter(2.0)
 	wall := dotbim.NewMeshBuilder().
 		SetMeshID(0).
 		SetCoordinates([]float64{
