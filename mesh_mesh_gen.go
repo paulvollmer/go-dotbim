@@ -20,13 +20,13 @@ func (builder *MeshBuilder) SetMeshID(meshid int) *MeshBuilder {
 }
 
 // SetCoordinates sets Coordinates and returns the builder.
-func (builder *MeshBuilder) SetCoordinates(coordinates []float64) *MeshBuilder {
+func (builder *MeshBuilder) SetCoordinates(coordinates Coordinates) *MeshBuilder {
 	builder.mesh.Coordinates = coordinates
 	return builder
 }
 
 // SetIndices sets Indices and returns the builder.
-func (builder *MeshBuilder) SetIndices(indices []int) *MeshBuilder {
+func (builder *MeshBuilder) SetIndices(indices Indices) *MeshBuilder {
 	builder.mesh.Indices = indices
 	return builder
 }
