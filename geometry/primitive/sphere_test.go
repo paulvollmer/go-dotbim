@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	
-	"github.com/paulvollmer/go-dotbim/geometry/primitive
+
+	"github.com/paulvollmer/go-dotbim/geometry/primitive"
 )
 
 func TestSphere(t *testing.T) {

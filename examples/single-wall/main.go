@@ -19,21 +19,36 @@ func main() {
 	wallWidth := units.Centimeter(20)
 	wallLength := units.Meter(4.0)
 	wallHeight := units.Meter(2.0)
+	coords := dotbim.NewCoordinates()
+	// Floor corners
+	coords.Vertex(0, 0, 0)
+	coords.Vertex(wallWidth, 0, 0)
+	coords.Vertex(wallWidth, wallLength, 0)
+	coords.Vertex(0, wallLength, 0)
+	// Ceiling corners
+	coords.Vertex(0, 0, wallHeight)
+	coords.Vertex(wallWidth, 0, wallHeight)
+	coords.Vertex(wallWidth, wallLength, wallHeight)
+	coords.Vertex(0, wallLength, wallHeight)
 	wall := dotbim.NewMeshBuilder().
 		SetMeshID(0).
-		SetCoordinates([]float64{
-			0, 0, 0, wallWidth, 0, 0, wallWidth, wallLength, 0, 0, wallLength, 0, // Floor corners
-			0, 0, wallHeight, wallWidth, 0, wallHeight, wallWidth, wallLength, wallHeight, 0, wallLength, wallHeight, // Ceiling corners
-		}).
+		SetCoordinates(*coords).
 		// Triangles (indices) for the 6 faces of the room (exterior walls/volume)
-		SetIndices([]int{
-			0, 1, 2, 0, 2, 3, // Floor
-			4, 6, 5, 4, 7, 6, // Ceiling
-			0, 4, 5, 0, 5, 1, // Front wall
-			1, 5, 6, 1, 6, 2, // Right wall
-			2, 6, 7, 2, 7, 3, // Back wall
-			3, 7, 4, 3, 4, 0, // Left wall
-		}).
+		SetIndices(
+			*dotbim.NewIndices().
+				// Floor
+				Tri(0, 1, 2).Tri(0, 2, 3).
+				// Ceiling
+				Tri(4, 6, 5).Tri(4, 7, 6).
+				// Front wall
+				Tri(0, 4, 5).Tri(0, 5, 1).
+				// Right wall
+				Tri(1, 5, 6).Tri(1, 6, 2).
+				// Back wall
+				Tri(2, 6, 7).Tri(2, 7, 3).
+				// Left wall
+				Tri(3, 7, 4).Tri(3, 4, 0),
+		).
 		Build()
 	building.AddMesh(*wall)
 
